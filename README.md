@@ -24,7 +24,7 @@ Run the console application to clean a file by providing the following parameter
   OR
   delimiter=C<###>: Specifies an ASCII character code for the delimiter.  Must be a three digit number, with leading zeroes if necessary.  Especially useful if the delimiter is a control character.
 * hasHeaders=<Y|N>: Identifies whether the first row of data contains headers.
-* delimitersPerRow: This is required if hasHeaders=N.  When a data file has headers the application auto-calculates the number of delimiters per row.  If the file has no headers then this value must be supplied manually.
+* delimitersPerRow=#: This is required if hasHeaders=N.  When a data file has headers the application auto-calculates the number of delimiters per row.  If the file has no headers then this value must be supplied manually.
 
 The followin parameter is optional:
 * qualifier=<string>: Identifies the text qualifier.  Delimiters inside text qualifiers are not counted as delimiters.  This value must be a single character or one of the following paired character sets: (), [], {}.
