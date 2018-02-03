@@ -20,11 +20,9 @@ You can obtain the Console application in one of two ways:
 
 Run the console application to clean a file by providing the following parameters:
 * file=<fileName>: Specifies the name or path of the file to clean.  Can contain spaces.
-* delimiter=<char>: A single character describing the delimiter.  Must be unquoted.
-  OR
-  delimiter=C<###>: Specifies an ASCII character code for the delimiter.  Must be a three digit number, with leading zeroes if necessary.  Especially useful if the delimiter is a control character.
+* delimiter=<char> OR delimiter=C<###>: A single character describing the delimiter.  Alternatively, an ASCII character code can be specified for the delimiter.  The character code must be a three digit number, including leading zeroes if necessary, preceded by a capital 'C'.  This is especially useful if the delimiter is a control character.
 * hasHeaders=<Y|N>: Identifies whether the first row of data contains headers.
-* delimitersPerRow=#: This is required if hasHeaders=N.  When a data file has headers the application auto-calculates the number of delimiters per row.  If the file has no headers then this value must be supplied manually.
+* delimitersPerRow=<#>: This is required if hasHeaders=N.  When a data file has headers the application auto-calculates the number of delimiters per row.  If the file has no headers then this value must be supplied manually.
 
 The followin parameter is optional:
 * qualifier=<string>: Identifies the text qualifier.  Delimiters inside text qualifiers are not counted as delimiters.  This value must be a single character or one of the following paired character sets: (), [], {}.
