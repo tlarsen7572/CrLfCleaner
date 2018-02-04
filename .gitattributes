@@ -3,9 +3,10 @@
 
 # It is important line endings are not changed in the test files.
 # One of the tests is to handle files with multiple line-ending schemas.
-CrLfCleaner.Tests\*.txt binary
+*.txt text=false
 
 # These files should always have CrLf endings
 *.sln    text eol=crlf
 *.csproj text eol=crlf
 *.cs     text eol=crlf
+*.config text eol=crlf
