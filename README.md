@@ -35,9 +35,9 @@ A file called 'MyData.csv' uses comma delimiters and double-quote text qualifier
 > CfLfCleaner "file=MyData.csv" "delimiter=," "hasHeaders=Y" "qualifier="""
 
 ###### Example:
-"C:\Users\Me\Documents\My Data\Data.txt" uses record separator delimiters (ASCII character code 10) and no text qualifiers.  It does not contain a header row but should have 15 delimiters in each row of data.  To clean this file from the cmd command line, use:
+"C:\Users\Me\Documents\My Data\Data.txt" uses field separator delimiters (ASCII character code 28) and no text qualifiers.  It does not contain a header row but should have 15 delimiters in each row of data.  To clean this file from the cmd command line, use:
 
-> CrLfCleaner "file=C:\Users\Me\Documents\My Data\Data.txt" "delimiter=C010" "hasHeaders=N" "delimitersPerRow=15"
+> CrLfCleaner "file=C:\Users\Me\Documents\My Data\Data.txt" "delimiter=C028" "hasHeaders=N" "delimitersPerRow=15"
 
 ### How do I use the Cleaner class in my code?
 
