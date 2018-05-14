@@ -19,25 +19,34 @@ namespace CrLfCleaner
             Cleaner cleaner;
             if (a.HasHeaders)
             {
-                if (a.Qualifier == "")
-                {
-                    cleaner = Cleaner.WithHeaders(a.File, a.Delimiter, a.Qualifier);
-                }
-                else
+                if (a.Qualifier == String.Empty)
                 {
                     cleaner = Cleaner.WithHeaders(a.File, a.Delimiter);
                 }
+                else
+                {
+                    cleaner = Cleaner.WithHeaders(a.File, a.Delimiter, a.Qualifier);
+                }
             } else
             {
-                if (a.Qualifier == "")
-                {
-                    cleaner = Cleaner.NoHeaders(a.File, a.Delimiter, a.DelimitersPerRow, a.Qualifier);
-                }
-                else
+                if (a.Qualifier == String.Empty)
                 {
                     cleaner = Cleaner.NoHeaders(a.File, a.Delimiter, a.DelimitersPerRow);
                 }
+                else
+                {
+                    cleaner = Cleaner.NoHeaders(a.File, a.Delimiter, a.DelimitersPerRow, a.Qualifier);
+                }
             }
+
+            Console.WriteLine("CrLfCleaner is running with the following parameters:");
+            Console.WriteLine($"File: {cleaner.file}");
+            Console.WriteLine($"Delimiter: {cleaner.delimiter}");
+            Console.WriteLine($"Qualifier was provided: {cleaner.qualifierProvided}");
+            Console.WriteLine($"Starting qualifier: {cleaner.startQualifier}");
+            Console.WriteLine($"Ending qualifier: {cleaner.endQualifier}");
+            Console.WriteLine($"Has headers: {cleaner.hasHeaders}");
+            Console.WriteLine("");
 
             var start = DateTime.UtcNow;
             try

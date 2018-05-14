@@ -15,29 +15,29 @@ namespace CrLfCleaner.Core
     {
         private Cleaner(string file, char delimiter, bool hasHeaders, int delimitersPerRow, string qualifier = "")
         {
-            _file = file;
-            _delimiter = delimiter;
-            _hasHeaders = hasHeaders;
+            this.file = file;
+            this.delimiter = delimiter;
+            this.hasHeaders = hasHeaders;
             _delimitersPerRow = delimitersPerRow;
 
             if (qualifier.Equals(string.Empty))
             {
-                _qualifierProvided = false;
+                qualifierProvided = false;
             }
             else
             {
                 if (qualifier.Length > 2 || !Regex.Match(qualifier, @"^(.|\(\)|\[\]|\{\})?$").Success)
                     throw new ArgumentException("qualifier must be a single character, parenthesis, square brackets, or curly braces");
 
-                _qualifierProvided = true;
-                _startQualifier = qualifier[0];
+                qualifierProvided = true;
+                startQualifier = qualifier[0];
                 if (qualifier.Length == 2)
                 {
-                    _endQualifier = qualifier[1];
+                    endQualifier = qualifier[1];
                 }
                 else
                 {
-                    _endQualifier = qualifier[0];
+                    endQualifier = qualifier[0];
                 }                    
             }
         }
@@ -80,23 +80,23 @@ namespace CrLfCleaner.Core
             return new Cleaner(file, delimiter, true, 0);
         }
 
-        readonly private string _file;
-        readonly private bool _hasHeaders;
-        readonly private char _delimiter;
-        readonly private char _startQualifier;
-        readonly private char _endQualifier;
-        readonly private bool _qualifierProvided;
+        readonly public string file;
+        readonly public bool hasHeaders;
+        readonly public char delimiter;
+        readonly public char startQualifier;
+        readonly public char endQualifier;
+        readonly public bool qualifierProvided;
         private bool _isQualified;
         private int _delimitersPerRow;
 
         public void Clean()
         {
             _isQualified = false;
-            StreamReader reader = new StreamReader(_file);
-            StreamWriter writer = new StreamWriter(_file + "clean");
+            StreamReader reader = new StreamReader(file);
+            StreamWriter writer = new StreamWriter(file + "clean");
             int currentRow = 0;
 
-            if (_hasHeaders)
+            if (hasHeaders)
             {
                 currentRow++;
                 ProcessHeader(reader, writer);
@@ -141,18 +141,18 @@ namespace CrLfCleaner.Core
             int delimiters = 0;
             foreach (char c in line)
             {
-                if (_qualifierProvided)
+                if (qualifierProvided)
                 {
                     if (_isQualified)
                     {
-                        if (c.Equals(_endQualifier)) _isQualified = false;
+                        if (c.Equals(endQualifier)) _isQualified = false;
                     }
                     else
                     {
-                        if (c.Equals(_startQualifier)) _isQualified = true;
+                        if (c.Equals(startQualifier)) _isQualified = true;
                     }                        
                 }
-                if (c.Equals(_delimiter) && !_isQualified) delimiters++;
+                if (c.Equals(delimiter) && !_isQualified) delimiters++;
             }
             return delimiters;
         }
